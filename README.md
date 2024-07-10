@@ -1,6 +1,9 @@
+# OS
+Windows 10
+
 # Software versions
-Python 3.8.8
-Flask 2.2.2
+Python 3.8.8 \
+Flask 2.2.2 \
 Werkzeug 2.2.3
 
 # Installation
@@ -14,21 +17,14 @@ python .\installation\init.py
 
 #### Start Flask API
 
-Run 
 ```
 python .\run.py
 ```
 
 #### Start Frontend Server
 
-Run: 
 ```
-cd .\frontend\
-# then
+cd .\frontend
 npm run dev 
-# or 
-yarn dev 
-# or 
-pnpm dev
 ```
 
