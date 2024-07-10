@@ -1,0 +1,1 @@
+export type DataTableType = {[header: string]: string}[]

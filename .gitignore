@@ -1,0 +1,12 @@
+installation
+dataset
+.vscode
+
+api/__pycache__
+api/optim_model
+api/optim_model/*
+
+frontend/node_modules
+
+*.db
+*.xlsx
