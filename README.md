@@ -1,5 +1,5 @@
 # OS
-Windows 10
+Windows 10 64-bit
 
 # Software versions
 Python 3.8.8 \
