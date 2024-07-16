@@ -76,8 +76,8 @@ export default function CardThree({
             title={"Check emplacement data"}
         >
             <Tab.Group>
-                <NavigationTab tabTitles={["Supervisees", "Caseworkers"]} />
-                <Tab.Panels>
+                <NavigationTab tabTitles={["Supervisees", "Caseworkers"]} />=
+                <Tab.Panels className="max-w-full max-h-full">
                     <Tab.Panel key="Supervisees">
                         <Tab.Group onChange={onToggleSupsTypeTab} selectedIndex={selectedSupsTypeTabIndex()} >
                             <NavigationTab tabTitles={["All", "Penal or black cases", "Leaving caseworkers' cases"]} />
@@ -88,7 +88,7 @@ export default function CardThree({
                             columnNameKeyMap={InterimSupsColumnNameToKey}
                             showSupsType={showSupsType}
                             supEditType="toggleEmplacement"
-                        />
+                            />
                     </Tab.Panel>
                     <Tab.Panel key="Crs">
                         <Tab.Group onChange={onToggleCrsTypeTab} selectedIndex={selectedCrsTypeTabIndex()} >
@@ -96,7 +96,7 @@ export default function CardThree({
                         </Tab.Group>
                         <CrsTable crsInfo={crsProcessedInfo} showCrsType={showCrsType} columnNameKeyMap={InterimCrsColumnNameToKey} />
                     </Tab.Panel>
-                </Tab.Panels>
+                </Tab.Panels>=
             </Tab.Group>
         </CardModal>
     )

@@ -15,19 +15,20 @@ interface CrsTableProp {
     columnNameKeyMap: BiStringMap,
 }
 
-export default function CrsTable({crsInfo, showCrsType, columnNameKeyMap}: CrsTableProp) {
-    function crsFilter(crs: {[header:string]:string}) {
-        switch (showCrsType) {
-            case "all":
-                return true
-            case "leaving":
-                return crs['is_leaving']
-            case "on hiatus":
-                return crs['no_new_cases']
-            case "taking new cases":
-                return !crs['no_new_cases'] && !crs['is_leaving']
-        }
+export function crsFilter(crs: {[header:string]:string}, showCrsType: 'all' | 'leaving' | 'on hiatus' | 'taking new cases') {
+    switch (showCrsType) {
+        case "all":
+            return true
+        case "leaving":
+            return crs['is_leaving']
+        case "on hiatus":
+            return crs['no_new_cases']
+        case "taking new cases":
+            return !crs['no_new_cases'] && !crs['is_leaving']
     }
+}
+
+export default function CrsTable({crsInfo, showCrsType, columnNameKeyMap}: CrsTableProp) {
 
     function getNumOfCrsMessage() {
         switch (showCrsType) {
@@ -41,7 +42,7 @@ export default function CrsTable({crsInfo, showCrsType, columnNameKeyMap}: CrsTa
     }
                 
     var totalNumOfCrs = crsInfo.filter(crs => {return !crs['is_leaving'] && !crs['no_new_cases']}).length
-    var numOfCrs = crsInfo.filter(crs => {return crsFilter(crs)}).length
+    var numOfCrs = crsInfo.filter(crs => {return crsFilter(crs, showCrsType)}).length
 
     return (
         <>
@@ -57,7 +58,7 @@ export default function CrsTable({crsInfo, showCrsType, columnNameKeyMap}: CrsTa
                     )}
                 </TableHeaderRow>
                 <TableBody>
-                    {crsInfo.filter(crs => {return crsFilter(crs)}).map(crs =>
+                    {crsInfo.filter(crs => {return crsFilter(crs, showCrsType)}).map(crs =>
                         <TableRow key={crs.crs_name}>
                             {Array.from(columnNameKeyMap.keys()).map(key => 
                                 <TableCell key={key + crs.crs_name} content={crs[key].toString()} />

@@ -17,10 +17,10 @@ export default function Layout({
                     <NavItem href="/allocations/generate" title="Generate Allocation" />
                 </NavBar>
             </div>
-            <div className="h-full p-4 lg:px-24"> 
+            <div className="p-4 lg:px-24"> 
                 {children}
             </div>
-            <footer className="absolute sticky top-[100vh] right-0 p-4 min-w-max lg:hidden">
+            <footer className="sticky p-2 min-w-max lg:hidden">
                 <DSAISignature />
             </footer>
         </div>

@@ -4,7 +4,7 @@ import { Tab } from "@headlessui/react";
 import { NavigationTab } from "@/components/navigation/nav-tab";
 import { CrsResultsColumnNameToKey, DataTableType, SupsResultsColumnNameToKey } from "./emplacement-data";
 import SupsTable, {supsType} from "./sups-table";
-import CrsTable from "./crs-table";
+import CrsTable, { crsFilter } from "./crs-table";
 import { useState } from "react";
 import DownloadButton from "@/components/button/download-button";
 
@@ -22,7 +22,7 @@ export default function CardFour({
     downloadResults,
 }: CardFourProp) {
 
-    var crsForEmplacementNames = crsEmplacementResult.filter(crs => !crs['is_leaving'] && !crs['no_new_case']).map(crs => crs['crs_name'])
+    var crsForEmplacementNames =  crsEmplacementResult.filter(crs => {return crsFilter(crs, 'taking new cases')}).map(crs => crs['crs_name'])
 
     const [showSupsType, setShowSupsType] = useState<supsType>("all")
     function onToggleSupsTypeTab(index: number) {
@@ -61,32 +61,36 @@ export default function CardFour({
             <div className="py-2">
                 <DownloadButton onClick={downloadResults} text="Download" colour="yellow" />
             </div>
-            <Tab.Group>
-                <NavigationTab tabTitles={["Supervisees", "Caseworkers"]} />
-                <Tab.Panels>
-                    <Tab.Panel key="Supervisees">
-                    <Tab.Group onChange={onToggleSupsTypeTab} selectedIndex={selectedSupsTypeTabIndex()} >
-                        <NavigationTab tabTitles={["All", "Penal or black cases", "Leaving caseworkers' cases"]} />
-                    </Tab.Group>
-                    <SupsTable 
-                        superviseesInfo={chhSupEmplacementResult} 
-                        setChhSuperviseesInfo={setChhSupEmplacementResult} 
-                        showSupsType={showSupsType} 
-                        columnNameKeyMap={SupsResultsColumnNameToKey}
-                        supEditType="assignCRS"
-                        crsNames={crsForEmplacementNames}
-                        updateSup={updateSup}
-                    />
-                    </Tab.Panel>
-                    <Tab.Panel key="Crs">
-                        <CrsTable 
-                            crsInfo={crsEmplacementResult} 
-                            showCrsType={'taking new cases'} 
-                            columnNameKeyMap={CrsResultsColumnNameToKey}
-                        />
-                    </Tab.Panel>
-                </Tab.Panels>
-            </Tab.Group>
+            <div className="container max-w-full y-screen">
+                <Tab.Group>
+                    <NavigationTab tabTitles={["Supervisees", "Caseworkers"]} />
+                    <div className="w-full overflow-x-scroll max-h-screen">
+                    <Tab.Panels>
+                        <Tab.Panel key="Supervisees">
+                        <Tab.Group onChange={onToggleSupsTypeTab} selectedIndex={selectedSupsTypeTabIndex()} >
+                            <NavigationTab tabTitles={["All", "Penal or black cases", "Leaving caseworkers' cases"]} />
+                        </Tab.Group>
+                        <SupsTable 
+                            superviseesInfo={chhSupEmplacementResult} 
+                            setChhSuperviseesInfo={setChhSupEmplacementResult} 
+                            showSupsType={showSupsType} 
+                            columnNameKeyMap={SupsResultsColumnNameToKey}
+                            supEditType="assignCRS"
+                            crsNames={crsForEmplacementNames}
+                            updateSup={updateSup}
+                            />
+                        </Tab.Panel>
+                        <Tab.Panel key="Crs">
+                            <CrsTable 
+                                crsInfo={crsEmplacementResult} 
+                                showCrsType={'taking new cases'} 
+                                columnNameKeyMap={CrsResultsColumnNameToKey}
+                                />
+                        </Tab.Panel>
+                    </Tab.Panels>
+                                </div>
+                </Tab.Group>
+            </div>
         </CardModal>
     )
 }

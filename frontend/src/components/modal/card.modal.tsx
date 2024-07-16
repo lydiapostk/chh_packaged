@@ -29,6 +29,7 @@ export default function CardModal(
                 leave="transition-opacity ease-in-out duration-0 transform"
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
+                className="max-w-full"
             >
                 <div className="w-auto h-auto flex flex-col place-items-center">
                     <div className="w-full my-5 flex flex-row justify-between">

@@ -36,30 +36,7 @@ export default function ViewAllAllocations() {
         );
     }, []);
     function cardOneGoToNext() {
-        var all_crs_info: CrsEmplacementPartialInfoType[] = allCrsNames.map(name => {
-            return {
-                crs_name: name,
-                is_leaving: leavingCrs.includes(name),
-                no_new_cases: noNewCaseCrs.includes(name),
-            }
-        })
-        var crsEmplacementFullInfo: CrsEmplacementFullCreateInfoType = {
-            month: MonthToInt(selectedMonth),
-            year: selectedYear,
-            all_crs_info: all_crs_info,
-        }
-        fetch('/database/upsert_crs_emplacement_info_no_caseload', {
-            method: 'POST', 
-            mode: 'cors',
-            body: JSON.stringify(crsEmplacementFullInfo), // body data type must match "Content-Type" header
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        }).then(() => {
-            setSelectedCard(2)
-        }).catch(error => {
-            setError((error as Error).message)
-        })
+        setSelectedCard(2)
     }
 
     // Card two attributes

@@ -77,8 +77,6 @@ export default function CardTwo({
                         setFileName={setEmplacementListFileName}
                         expectedSheetsProp={emplacementFileProp}
                         errorMessage={emplacementListError} setErrorMessage={setEmplacementListError}
-                        // headersValidation={checkEmplacementDataColumns("EmplacementList")}
-                        // renameHeaders={(header:string)=>{return EmplacementListColumnNameToKey.getValue(header)}}
                     />
                 </div>
         </CardModal>
