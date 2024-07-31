@@ -1,8 +1,4 @@
 {
   "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/allocations/crs/page": "app/allocations/crs/page.js",
-  "/allocations/settings/page": "app/allocations/settings/page.js",
-  "/allocations/view/page": "app/allocations/view/page.js",
-  "/allocations/generate/page": "app/allocations/generate/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

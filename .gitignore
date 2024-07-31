@@ -2,8 +2,9 @@ installation
 dataset
 .vscode
 
-backend/api/__pycache__
 backend/optim_model
+backend/cplex
+backend/api/__pycache__
 backend/api/blueprints/__pycache__
 api/blueprints/__pycache__
 frontend/node_modules

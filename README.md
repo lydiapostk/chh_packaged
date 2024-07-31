@@ -1,10 +1,8 @@
-# OS
-Windows 10 64-bit
-
 # Software versions
-Python 3.8.8 \
-Flask 2.2.2 \
+Python 3.8.8
+Flask 2.2.2
 Werkzeug 2.2.3
+Node 18.18.2
 
 ## Python packages
 Python packages:
@@ -38,14 +36,26 @@ python .\installation\init.py
 
 #### Start Flask API
 
+Run 
 ```
 python .\run.py
 ```
 
 #### Start Frontend Server
 
+Run: 
 ```
-cd .\frontend
+cd .\frontend\
+# then
 npm run dev 
+# or 
+yarn dev 
+# or 
+pnpm dev
 ```
 
+#### Build frontend and run from docker image
+
+cd.\frontend\
+docker build -t nextjs-docker .
+docker run -p 3000:3000 nextjs-docker
